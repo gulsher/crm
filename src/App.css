@@ -1,0 +1,44 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+  
+}
+
+
+.login-box{
+  margin-top: 100px;
+  border: 1px solid #252525;
+  padding: 20px 40px 70px 40px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+
+
+.login-page{
+  background: #444a52;
+  height:100vh;
+}
+
+.sideMenu{
+ 
+  height: calc(100vh - 56px);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+
+.invalid-feedback {
+  display: block !important;
+}
+.card:hover{
+  transform: scale(1.05);
+  transition: all 1s ease;
+  z-index: 999;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.shadow{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
