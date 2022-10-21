@@ -1,6 +1,22 @@
 import React from 'react'
-
+import {
+  Routes,
+  Route,
+  Link,
+  useRoutes,
+  NavLink,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 export default function Header() {
+
+  const history = useNavigate();
+
+const handleLogout = e => {
+    localStorage.clear();
+    history('/')
+}
+  
   return (
     <div className="row">
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,7 +41,7 @@ export default function Header() {
               <form className="d-flex">
                 <button
                   className="btn btn-danger btn-sm"
-            
+                  onClick={handleLogout}
                 >
                   Logout
                   <i

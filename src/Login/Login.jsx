@@ -57,9 +57,9 @@ export default function Login({ setAuth }) {
   return (
     <div className="login-page container-fluid">
       <div className="row justify-content-md-center">
-        <div className="col-md-3">
+        <div className="col-md-4">
           <div className="login-box">
-            <img src={logo} width="250px" className="rounded mx-auto d-block" />
+            <img src={logo} width="200px" className="rounded mx-auto d-block" />
            { error.length ? <div className="alert alert-danger" role="alert">
               {error}
             </div>:null }

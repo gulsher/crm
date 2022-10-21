@@ -19,7 +19,7 @@ let baseURL = "http://localhost:4000/";
 export default function Create() {
   const required = "This field is required";
   const maxLength = "Your input exceed maximum length";
-  const notify = () => toast("Wow so easy !");
+  
   // Error Component
   const errorMessage = (error) => {
     return <div className="invalid-feedback">{error}</div>;

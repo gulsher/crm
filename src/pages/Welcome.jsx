@@ -16,6 +16,7 @@ import View from "./View";
 export default function Welcome() {
   const history = useNavigate();
   const [data, setData] = useState([]);
+  const [singleData, setSingleData] = useState({})
   const [is_singleView, setSingleView] = useState(false);
   let baseURL = "http://localhost:4000/";
   let url = `${baseURL}allCustomer/`;
@@ -47,6 +48,7 @@ export default function Welcome() {
 
   const handleView = (item) =>{
     setSingleView(true)
+    setSingleData(item)
   }
 
   return (
@@ -86,7 +88,7 @@ export default function Welcome() {
               ) : (
                 <p> No Data Available</p>
               )}
-            </div> :<View /> }
+            </div> :<View  data={singleData}/> }
           </div>
         </div>
       </div>
