@@ -49,7 +49,7 @@ export default function Create() {
     let error;
     if (!value) {
       error = required;
-    } else if (value.length > 10) {
+    } else if (value.toString().length > 10) {
       error = maxLength;
     }
     return error;
@@ -250,7 +250,8 @@ export default function Create() {
                               className="btn btn-primary ms-2"
                               type="submit"
                             >
-                              Save
+                              <i className="fa-regular fa-circle-check me-2"></i> 
+                               Save
                             </button>
                           </div>
                         </div>

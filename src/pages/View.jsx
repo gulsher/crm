@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
-
+import Swal from 'sweetalert2'
 import {
   Routes,
   Route,
@@ -16,7 +16,7 @@ import {
 } from "react-router-dom";
 export default function View(props) {
 
-  const {first_name ,last_name, contact , email, status , comments} = props.data
+  const {first_name ,last_name, contact , email, status , comments,id} = props.data
   const history = useNavigate();
 
   const [is_disabled,setEdit] = useState(true)
@@ -52,7 +52,8 @@ export default function View(props) {
     let error;
     if (!value) {
       error = required;
-    } else if (value.length > 10) {
+    } 
+    else if (value.toString().length > 10) {
       error = maxLength;
     }
     return error;
@@ -75,12 +76,45 @@ export default function View(props) {
     history(0);
   }
 
+  const handleDelete = () =>{
+    
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    let url = `${baseURL}delete/${id}`
+      axios.delete(url).then(resp =>{
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        setTimeout(()=>{
+          refresh()
+        },3000)
+      })
+    
+  }
+})
+     
+  }
+
   return (
     <div>
       <div className='row mt-5'>
-        <div className='col-12'>
-          <button className='btn btn-danger btn-sm' onClick={handleEdit} >Edit</button>
-          <button className='ms-3 btn btn-warning btn-sm' onClick={refresh} >Go Back</button>
+        <div className='col-10'>
+          <button className='btn btn-primary btn-sm' onClick={handleEdit} ><i className="fa-regular fa-pen-to-square"></i> Edit</button>
+          <button className='ms-3 btn btn-warning btn-sm' onClick={refresh} ><i className="fa-solid fa-arrow-left"></i> Go Back</button>
+        </div>
+        <div className='col-2'>
+        <button className='ms-3 btn btn-danger btn-sm d-inline-block' onClick={handleDelete} > <i className="fa-solid fa-trash"></i> Delete</button>
+
         </div>
       </div>
       <Formik
@@ -94,14 +128,15 @@ export default function View(props) {
       }}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         console.log(values);
-        let payload = values;
-        let url = `${baseURL}create/`;
+        let payload = {...values,id:id};
+        let url = `${baseURL}modify/`;
         axios
-          .post(url, payload)
+          .put(url, payload)
           .then((res) => {
             console.log(res);
             resetForm();
             toast.success("Request Added Successfully")
+            refresh();
           })
           .catch((e) => {
             console.log(e);
@@ -273,7 +308,8 @@ export default function View(props) {
                               type="submit"
                               disabled={is_disabled} 
                             >
-                              Save
+                              <i className="fa-solid fa-pen-to-square"></i>
+                              Update
                             </button>
                           </div>
                         </div>

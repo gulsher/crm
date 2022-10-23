@@ -10,7 +10,7 @@ import {
   } from "react-router-dom";
 export default function SideMenu() {
   return (
-    <div className="sideMenu text-center  bg-body">
+    <div className="sideMenu  bg-body">
       <nav className="nav flex-column pt-5 ">
         <NavLink className="nav-link" to="/home">
           Existing Client Users <i className="fa-regular fa-user"></i>

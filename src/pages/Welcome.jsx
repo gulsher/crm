@@ -78,7 +78,7 @@ export default function Welcome() {
                           <p className="card-text">Email: {item.email}</p>
                           <p className="card-text">Contact: {item.contact}</p>
                           <button className={`btn ${css(item.status)} w-100`} onClick={() =>handleView(item)} >
-                            View
+                          <i className="fa-regular fa-eye"></i> View
                           </button>
                         </div>
                       </div>
